@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop Example</title>
+    <style>
+        .draggable {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin: 10px;
+            cursor: pointer;
+        }
+        
+        .droppable {
+            width: 500px;
+            height: 500px;
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="div1" class="droppable" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div id="drag1" class="draggable" draggable="true" ondragstart="drag(event)"></div>
+        </div>
+        <div id="div2" class="droppable" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <!-- Div này có thể dùng để thả lại div đã kéo -->
+        </div>
+    </div>
+
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var draggableElement = document.getElementById(data);
+            var dropzone = ev.target;
+            
+            // Ensure the dropzone is a valid target
+            if (dropzone.classList.contains('droppable')) {
+                dropzone.appendChild(draggableElement);
+            } else if (dropzone.parentElement.classList.contains('droppable')) {
+                dropzone.parentElement.appendChild(draggableElement);
+            }
+        }
+    </script>
+</body>
+</html>
