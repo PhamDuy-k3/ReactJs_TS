@@ -68,6 +68,49 @@ const Types: React.FC = () => {
   let any: any = "string"; // any bỏ qua ràng buộc kiểu dữ liệu
   any = 23;
   any = false;
+
+  //Kế thừa type cha //////////////////////////////////////////////////////////////////////////////////////
+
+  // DÙNG TYPE
+  type Person = {
+    name: string;
+    age: number;
+  };
+
+  type Duy = Person & {
+    job: string; // kế thừa name , age của Person
+  };
+  const duy: Duy = {
+    name: "phamdouduy",
+    age: 11,
+    job: "FE",
+  }; //+> no error
+
+  // const duy2:Duy = {
+  //   age:11,
+  //   job:'FE'
+  // } //+> error ( thiếu trường name)
+
+  // DÙNG INTERFACE
+  interface IPerson1 {
+    name: string;
+    age: number;
+  }
+
+  interface IEmployee extends IPerson1 {
+    location: string;
+  }
+  const duy2: IEmployee = {
+    name: "phamdouduy",
+    age: 11,
+    location: "HN",
+  }; //+> no error
+
+  // const duy3: IEmployee = {
+  //   age: 11,
+  //   location: "HN",
+  // }; //+>  error
+
   return (
     <>
       <h1>Types</h1>

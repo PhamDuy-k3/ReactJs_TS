@@ -10,7 +10,7 @@ const Function: React.FC = () => {
   const handleLog = (message: string): void => {
     console.log("message", message);
   };
-  
+
   const a = handleLog("duy");
   console.log(a); //=> undefined
 
@@ -19,6 +19,13 @@ const Function: React.FC = () => {
   //   throw new Error(errorMessage);
   // };
   // console.log(handleError("error"));
+
+  // convert sang string//////////////////////////////////////////////////////////////////////////////////////////////
+
+  const sum5 = (a: number, b: number): string => {
+    return String(a + b);
+  };
+  sum5(1, 2);
 
   // UNION TYPE // nhiều kiểu dữ liệu cho 1 biến/////////////////////////////////////////////////
   const UnionType = (a: string | number, b: string | number) => {
