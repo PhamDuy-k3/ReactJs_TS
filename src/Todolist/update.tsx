@@ -1,31 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Product } from "./types";
-import ToastContainerNew from "./toast";
-import { toast } from "react-toastify";
 
-
-interface UpdateProps {
+interface IUpdateProps {
   idProduct: number;
   products: Product[];
   setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+  sum5: (aa: number, bb: number) => string;
 }
 
-const Update: React.FC<UpdateProps> = ({
+const Update: React.FC<IUpdateProps> = ({
   idProduct,
   products,
   setProducts,
+  sum5,
 }) => {
   const [show, setShow] = useState(false);
   const [newName, setNewName] = useState<string>("");
   const [newPrice, setNewPrice] = useState<string>("");
 
-  const handleClose = ():void => {
+  const handleClose = (): void => {
     setShow(false);
   };
 
-  const handleShow = ():void => {
+  const handleShow = (): void => {
     const productToUpdate = products.find(
       (product) => product.id === idProduct
     );
@@ -36,7 +35,7 @@ const Update: React.FC<UpdateProps> = ({
     setShow(true);
   };
 
-  const updateProduct = ():void => {
+  const updateProduct = (): void => {
     setProducts(
       products.map((product) =>
         product.id === idProduct
@@ -49,8 +48,9 @@ const Update: React.FC<UpdateProps> = ({
       )
     );
     handleClose();
-   
   };
+
+  console.log("chuyển hàm từ cha xuống con:", sum5(1, 2));
 
   return (
     <>

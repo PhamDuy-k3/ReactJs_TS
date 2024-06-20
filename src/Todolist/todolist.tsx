@@ -1,10 +1,10 @@
 import React, { useState, useRef } from "react";
 import "./todo.scss";
-import Update from "./update";
 import { Product } from "./types";
 import { formatCurrency } from "./utils";
 import ToastContainerNew from "./toast";
 import { toast } from "react-toastify";
+import Update from "./update";
 
 const Todo: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -14,7 +14,7 @@ const Todo: React.FC = () => {
   const textRef = useRef<HTMLInputElement>(null);
   const priceRef = useRef<HTMLInputElement>(null);
 
-  const addProduct = ():void => {
+  const addProduct = (): void => {
     if (text !== "" && price !== "") {
       const parsedPrice = parseFloat(price);
       if (isNaN(parsedPrice)) {
@@ -50,6 +50,9 @@ const Todo: React.FC = () => {
     return accumulator + parseFloat(item.price);
   }, 0);
 
+  const sum5 = (a: number, b: number): string => {
+    return String(a + b);
+  };
   return (
     <div className="todo-container">
       <h1>Danh sách sản phẩm</h1>
@@ -71,6 +74,7 @@ const Todo: React.FC = () => {
                 idProduct={product.id}
                 products={products}
                 setProducts={setProducts}
+                sum5={sum5}
               />
             </div>
           </li>
